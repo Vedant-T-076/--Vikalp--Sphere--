@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Vikalp Sphere – Design Your Website Before We Build It</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700&family=Merriweather:wght@700&family=Josefin+Sans:wght@700&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Space+Mono:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700&family=Merriweather:wght@700&family=Josefin+Sans:wght@700&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Space+Mono:wght@700&family=Raleway:wght@700;800&family=Cinzel:wght@700&family=Pacifico&family=Exo+2:wght@700;800&family=Cormorant+Garamond:wght@700&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -93,22 +93,13 @@
   }
   #navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-
-  /* LOGO — text + LogoF.png to the right */
   .logo {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 1.45rem; font-weight: 900; color: var(--dark);
     text-decoration: none; line-height: 1;
   }
   .logo span { color: var(--orange); }
-  .logo-img {
-    height: 38px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    display: block;
-  }
-
+  .logo-img { height: 38px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a { font-weight: 600; font-size: 0.92rem; color: var(--mid); transition: color 0.2s; }
   .nav-links a:hover { color: var(--orange); }
@@ -253,61 +244,68 @@
   }
   .type-card.selected .check { display: flex; }
 
-  /* COLOR PALETTE */
+  /* ── COLOR PALETTE ── */
   #color-palette { background: var(--white); }
-  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 16px; margin-top: 40px; }
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 14px; margin-top: 40px; }
   .palette-card {
     border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden;
     cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none;
   }
   .palette-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .palette-card.selected { border-color: var(--orange); box-shadow: var(--shadow-hover); }
-  .palette-swatches { display: flex; height: 60px; }
+  .palette-swatches { display: flex; height: 52px; }
   .swatch { flex: 1; }
-  .palette-info { padding: 14px 16px; }
-  .palette-name { font-weight: 800; font-size: 0.88rem; margin-bottom: 2px; }
-  .palette-desc { font-size: 0.75rem; color: var(--mid); }
+  .palette-info { padding: 12px 14px; }
+  .palette-name { font-weight: 800; font-size: 0.82rem; margin-bottom: 2px; }
+  .palette-desc { font-size: 0.72rem; color: var(--mid); }
+  .palette-vibe {
+    display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--orange); margin-top: 4px;
+  }
   .palette-selected-tag {
     display: none; background: var(--orange); color: #fff;
-    font-size: 0.7rem; font-weight: 700; padding: 2px 10px; border-radius: 50px; margin-top: 6px; width: fit-content;
+    font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; margin-top: 5px; width: fit-content;
   }
   .palette-card.selected .palette-selected-tag { display: block; }
 
-  /* FONT SELECTION */
+  /* ── FONT SELECTION ── */
   #font-selection { background: #FAFAFA; }
-  .font-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; margin-top: 40px; }
+  .font-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 16px; margin-top: 40px; }
   .font-card {
     border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 24px 20px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none;
+    padding: 22px 18px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none;
   }
   .font-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .font-card.selected { border-color: var(--orange); background: var(--orange-pale); }
-  .font-preview { font-size: 1.7rem; margin-bottom: 8px; line-height: 1.2; }
-  .font-label { font-weight: 800; font-size: 0.9rem; color: var(--dark); margin-bottom: 4px; }
-  .font-desc { font-size: 0.78rem; color: var(--mid); }
-  .font-sample { font-size: 0.76rem; color: var(--light); margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .font-preview { font-size: 1.6rem; margin-bottom: 6px; line-height: 1.2; }
+  .font-label { font-weight: 800; font-size: 0.88rem; color: var(--dark); margin-bottom: 3px; }
+  .font-desc { font-size: 0.75rem; color: var(--mid); }
+  .font-best { font-size: 0.68rem; color: var(--orange); font-weight: 700; margin-top: 3px; }
+  .font-sample { font-size: 0.72rem; color: var(--light); margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
 
-  /* LAYOUT SELECTOR */
+  /* ── LAYOUT SELECTOR ── */
   #layout-selector { background: var(--white); }
-  .layout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 20px; margin-top: 40px; }
+  .layout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 18px; margin-top: 40px; }
   .layout-card {
     border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 20px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none;
+    padding: 18px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none;
   }
   .layout-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .layout-card.selected { border-color: var(--orange); background: var(--orange-pale); }
   .layout-visual {
-    background: #F0F0F0; border-radius: 10px; padding: 14px;
-    margin-bottom: 14px; min-height: 90px; display: flex; flex-direction: column; gap: 6px;
+    background: #F0F0F0; border-radius: 10px; padding: 12px;
+    margin-bottom: 12px; min-height: 84px; display: flex; flex-direction: column; gap: 5px;
   }
-  .lv-row { display: flex; gap: 6px; }
+  .lv-row { display: flex; gap: 5px; }
   .lv-block { background: var(--border); border-radius: 4px; flex: 1; }
-  .lv-block.accent { background: rgba(255,107,0,0.3); }
-  .lv-block.tall { height: 40px; } .lv-block.short { height: 12px; } .lv-block.med { height: 24px; }
-  .lv-center { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .lv-center .lv-block { width: 80%; flex: none; }
-  .layout-name { font-weight: 800; font-size: 0.92rem; margin-bottom: 4px; }
-  .layout-desc { font-size: 0.8rem; color: var(--mid); }
+  .lv-block.accent { background: rgba(255,107,0,0.35); }
+  .lv-block.dark { background: #bbb; }
+  .lv-block.tall { height: 38px; } .lv-block.short { height: 11px; } .lv-block.med { height: 22px; } .lv-block.xshort { height: 7px; }
+  .lv-center { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .lv-center .lv-block { flex: none; }
+  .layout-name { font-weight: 800; font-size: 0.9rem; margin-bottom: 3px; }
+  .layout-desc { font-size: 0.76rem; color: var(--mid); }
+  .layout-best { font-size: 0.68rem; color: var(--orange); font-weight: 700; margin-top: 3px; }
 
   /* LIVE PREVIEW */
   #live-preview { background: #FAFAFA; }
@@ -388,14 +386,8 @@
 
   /* FOOTER */
   footer { background: var(--dark); color: #ccc; padding: 52px 24px 32px; }
-  .footer-inner {
-    max-width: 1120px; margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
-  }
-  .footer-logo {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 10px;
-  }
+  .footer-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-logo { display: inline-flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
   .footer-logo span { color: var(--orange); }
   .footer-logo-img { height: 32px; width: auto; object-fit: contain; opacity: 0.9; }
   .footer-tagline { font-size: 0.85rem; color: #888; line-height: 1.6; }
@@ -405,8 +397,7 @@
   .footer-col ul li a { font-size: 0.85rem; color: #888; transition: color 0.2s; }
   .footer-col ul li a:hover { color: var(--orange); }
   .footer-bottom {
-    max-width: 1120px; margin: 32px auto 0;
-    border-top: 1px solid #2a2a2a; padding-top: 20px;
+    max-width: 1120px; margin: 32px auto 0; border-top: 1px solid #2a2a2a; padding-top: 20px;
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
     font-size: 0.8rem; color: #555;
   }
@@ -455,18 +446,10 @@
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
-
-      <!-- ✅ ONLY CHANGE: LogoF.png added right after VikalpSphere text -->
       <a href="#hero" class="logo">
         Vikalp<span>Sphere</span>
-        <img
-          src="LogoF.png"
-          alt="VikalpSphere Logo"
-          class="logo-img"
-          onerror="this.style.display='none'"
-        />
+        <img src="LogoF.png" alt="VikalpSphere Logo" class="logo-img" onerror="this.style.display='none'"/>
       </a>
-
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#website-type">Explore</a></li>
@@ -504,9 +487,7 @@
           <button class="btn-outline" onclick="scrollToSection('our-work')">See Our Work</button>
         </div>
         <div class="hero-trust">
-          <div class="hero-trust-avatars">
-            <span>RK</span><span>PM</span><span>SA</span><span>NJ</span>
-          </div>
+          <div class="hero-trust-avatars"><span>RK</span><span>PM</span><span>SA</span><span>NJ</span></div>
           <div class="hero-trust-text"><strong>120+ clients</strong> already designed their site</div>
         </div>
       </div>
@@ -519,10 +500,8 @@
           </div>
           <div class="hv-content">
             <div class="hv-nav">
-              <div class="hv-nav-item" style="width:40px"></div>
-              <div class="hv-nav-item" style="width:30px"></div>
-              <div class="hv-nav-item" style="width:35px"></div>
-              <div class="hv-nav-item" style="width:28px"></div>
+              <div class="hv-nav-item" style="width:40px"></div><div class="hv-nav-item" style="width:30px"></div>
+              <div class="hv-nav-item" style="width:35px"></div><div class="hv-nav-item" style="width:28px"></div>
             </div>
             <div class="hv-hero-block">
               <div class="hv-text-block">
@@ -548,9 +527,7 @@
   <div class="container">
     <div class="section-label">Meet the Founder</div>
     <div class="founder-inner">
-      <div class="founder-avatar-wrap">
-        <div class="founder-avatar">VT</div>
-      </div>
+      <div class="founder-avatar-wrap"><div class="founder-avatar">VT</div></div>
       <div class="founder-content">
         <h2 class="founder-name">Vedant Tiwari</h2>
         <div class="founder-role">Founder &amp; Lead Website Builder · VikalpSphere</div>
@@ -565,12 +542,9 @@
           <div class="fstat"><div class="fstat-num">100%</div><div class="fstat-label">Client Satisfaction</div></div>
         </div>
         <div class="founder-skills">
-          <span class="skill-tag">Website Design</span>
-          <span class="skill-tag">Web Development</span>
-          <span class="skill-tag">UI/UX</span>
-          <span class="skill-tag">SEO</span>
-          <span class="skill-tag">Business Websites</span>
-          <span class="skill-tag">Landing Pages</span>
+          <span class="skill-tag">Website Design</span><span class="skill-tag">Web Development</span>
+          <span class="skill-tag">UI/UX</span><span class="skill-tag">SEO</span>
+          <span class="skill-tag">Business Websites</span><span class="skill-tag">Landing Pages</span>
         </div>
       </div>
     </div>
@@ -611,140 +585,317 @@
   </div>
 </section>
 
-<!-- COLOR PALETTE -->
+<!-- ════════════════════════════════════════
+     STEP 2 — 15 COLOR COMBINATIONS
+════════════════════════════════════════ -->
 <section id="color-palette">
   <div class="container">
     <div class="section-label">Step 2</div>
     <h2 class="section-title">Pick a Color Combination</h2>
-    <p class="section-sub">Your brand colors set the tone. Choose a palette that resonates with your business.</p>
+    <p class="section-sub">Brand research backed palettes — each one chosen for a specific industry and emotion.</p>
     <div class="palette-grid" id="palette-grid">
+
+      <!-- 1 -->
       <div class="palette-card" data-value="Orange & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#FFF3E8"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Orange &amp; White</div><div class="palette-desc">Energetic, modern, trust</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-swatches"><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#FF8C33"></div><div class="swatch" style="background:#FFF3E8"></div></div>
+        <div class="palette-info"><div class="palette-name">Orange &amp; White</div><div class="palette-desc">Energy, trust, action</div><div class="palette-vibe">Best for: Gym · Startup · Food</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Blue & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#2563EB"></div><div class="swatch" style="background:#DBEAFE"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Blue &amp; White</div><div class="palette-desc">Professional, calm, reliable</div><div class="palette-selected-tag">✓ Selected</div></div>
+
+      <!-- 2 -->
+      <div class="palette-card" data-value="Royal Blue & White" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#1E3A8A"></div><div class="swatch" style="background:#3B82F6"></div><div class="swatch" style="background:#EFF6FF"></div></div>
+        <div class="palette-info"><div class="palette-name">Royal Blue &amp; White</div><div class="palette-desc">Trust, authority, calm</div><div class="palette-vibe">Best for: Corporate · Medical · Edu</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
+
+      <!-- 3 -->
       <div class="palette-card" data-value="Black & Gold" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#1A1A1A"></div><div class="swatch" style="background:#D4AF37"></div><div class="swatch" style="background:#F5F5F0"></div></div>
-        <div class="palette-info"><div class="palette-name">Black &amp; Gold</div><div class="palette-desc">Luxury, premium, elegant</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-swatches"><div class="swatch" style="background:#0A0A0A"></div><div class="swatch" style="background:#C9A84C"></div><div class="swatch" style="background:#F5F0E8"></div></div>
+        <div class="palette-info"><div class="palette-name">Black &amp; Gold</div><div class="palette-desc">Luxury, power, premium</div><div class="palette-vibe">Best for: Jewellery · Hotel · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Green & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#16A34A"></div><div class="swatch" style="background:#DCFCE7"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Green &amp; White</div><div class="palette-desc">Health, fresh, natural</div><div class="palette-selected-tag">✓ Selected</div></div>
+
+      <!-- 4 -->
+      <div class="palette-card" data-value="Forest Green & Cream" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#064E3B"></div><div class="swatch" style="background:#10B981"></div><div class="swatch" style="background:#ECFDF5"></div></div>
+        <div class="palette-info"><div class="palette-name">Forest Green &amp; Cream</div><div class="palette-desc">Natural, health, organic</div><div class="palette-vibe">Best for: Clinic · Ayurveda · Spa</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Purple & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#7C3AED"></div><div class="swatch" style="background:#EDE9FE"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Purple &amp; White</div><div class="palette-desc">Creative, bold, innovative</div><div class="palette-selected-tag">✓ Selected</div></div>
+
+      <!-- 5 -->
+      <div class="palette-card" data-value="Deep Purple & Lavender" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#4C1D95"></div><div class="swatch" style="background:#8B5CF6"></div><div class="swatch" style="background:#F5F3FF"></div></div>
+        <div class="palette-info"><div class="palette-name">Deep Purple &amp; Lavender</div><div class="palette-desc">Creative, bold, futuristic</div><div class="palette-vibe">Best for: Tech · Design · Agency</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Red & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#DC2626"></div><div class="swatch" style="background:#FEE2E2"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Red &amp; White</div><div class="palette-desc">Bold, passionate, strong</div><div class="palette-selected-tag">✓ Selected</div></div>
+
+      <!-- 6 -->
+      <div class="palette-card" data-value="Crimson & White" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#9B1C1C"></div><div class="swatch" style="background:#EF4444"></div><div class="swatch" style="background:#FFF5F5"></div></div>
+        <div class="palette-info"><div class="palette-name">Crimson &amp; White</div><div class="palette-desc">Passion, urgency, bold</div><div class="palette-vibe">Best for: Restaurant · Sports · NGO</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Dark Green & Gold" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#064E3B"></div><div class="swatch" style="background:#D4AF37"></div><div class="swatch" style="background:#F0FDF4"></div></div>
-        <div class="palette-info"><div class="palette-name">Dark Green &amp; Gold</div><div class="palette-desc">VIP, rich, prestigious</div><div class="palette-selected-tag">✓ Selected</div></div>
-      </div>
+
+      <!-- 7 -->
       <div class="palette-card" data-value="Navy & Silver" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#0F172A"></div><div class="swatch" style="background:#CBD5E1"></div><div class="swatch" style="background:#F8FAFC"></div></div>
-        <div class="palette-info"><div class="palette-name">Navy &amp; Silver</div><div class="palette-desc">Corporate, sleek, premium</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-swatches"><div class="swatch" style="background:#0F172A"></div><div class="swatch" style="background:#64748B"></div><div class="swatch" style="background:#F1F5F9"></div></div>
+        <div class="palette-info"><div class="palette-name">Navy &amp; Silver</div><div class="palette-desc">Sleek, corporate, serious</div><div class="palette-vibe">Best for: Finance · CA · Consulting</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
-      <div class="palette-card" data-value="Maroon & Cream" onclick="selectOption('color',this)">
+
+      <!-- 8 -->
+      <div class="palette-card" data-value="Maroon & Gold" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#7F1D1D"></div><div class="swatch" style="background:#D4AF37"></div><div class="swatch" style="background:#FEF9EE"></div></div>
-        <div class="palette-info"><div class="palette-name">Maroon &amp; Cream</div><div class="palette-desc">Royal, traditional, warm</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Maroon &amp; Gold</div><div class="palette-desc">Royal, heritage, traditional</div><div class="palette-vibe">Best for: School · Wedding · Trust</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
+
+      <!-- 9 -->
       <div class="palette-card" data-value="Teal & White" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#0D9488"></div><div class="swatch" style="background:#CCFBF1"></div><div class="swatch" style="background:#FFFFFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Teal &amp; White</div><div class="palette-desc">Fresh, modern, medical</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-swatches"><div class="swatch" style="background:#0D9488"></div><div class="swatch" style="background:#2DD4BF"></div><div class="swatch" style="background:#F0FDFA"></div></div>
+        <div class="palette-info"><div class="palette-name">Teal &amp; White</div><div class="palette-desc">Fresh, modern, hygienic</div><div class="palette-vibe">Best for: Hospital · Pharma · Dental</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
+
+      <!-- 10 -->
       <div class="palette-card" data-value="Charcoal & Orange" onclick="selectOption('color',this)">
-        <div class="palette-swatches"><div class="swatch" style="background:#374151"></div><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#F9FAFB"></div></div>
-        <div class="palette-info"><div class="palette-name">Charcoal &amp; Orange</div><div class="palette-desc">Industrial, bold, dynamic</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-swatches"><div class="swatch" style="background:#1F2937"></div><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#F9FAFB"></div></div>
+        <div class="palette-info"><div class="palette-name">Charcoal &amp; Orange</div><div class="palette-desc">Industrial, dynamic, strong</div><div class="palette-vibe">Best for: Construction · Auto · Gym</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
+
+      <!-- 11 -->
+      <div class="palette-card" data-value="Rose Gold & White" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#BE185D"></div><div class="swatch" style="background:#F9A8D4"></div><div class="swatch" style="background:#FFF1F2"></div></div>
+        <div class="palette-info"><div class="palette-name">Rose Gold &amp; White</div><div class="palette-desc">Feminine, elegant, warm</div><div class="palette-vibe">Best for: Beauty · Salon · Boutique</div><div class="palette-selected-tag">✓ Selected</div></div>
+      </div>
+
+      <!-- 12 -->
+      <div class="palette-card" data-value="Midnight Blue & Cyan" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#0C1445"></div><div class="swatch" style="background:#06B6D4"></div><div class="swatch" style="background:#ECFEFF"></div></div>
+        <div class="palette-info"><div class="palette-name">Midnight Blue &amp; Cyan</div><div class="palette-desc">Innovation, digital, sharp</div><div class="palette-vibe">Best for: IT · SaaS · App · Fintech</div><div class="palette-selected-tag">✓ Selected</div></div>
+      </div>
+
+      <!-- 13 -->
+      <div class="palette-card" data-value="Saffron & Ivory" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#D97706"></div><div class="swatch" style="background:#FCD34D"></div><div class="swatch" style="background:#FFFBEB"></div></div>
+        <div class="palette-info"><div class="palette-name">Saffron &amp; Ivory</div><div class="palette-desc">Warm, Indian, festive</div><div class="palette-vibe">Best for: Catering · Events · Cultural</div><div class="palette-selected-tag">✓ Selected</div></div>
+      </div>
+
+      <!-- 14 -->
+      <div class="palette-card" data-value="Slate & Lime" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#334155"></div><div class="swatch" style="background:#84CC16"></div><div class="swatch" style="background:#F7FEE7"></div></div>
+        <div class="palette-info"><div class="palette-name">Slate &amp; Lime</div><div class="palette-desc">Eco, modern, fresh</div><div class="palette-vibe">Best for: Organic · Startup · Sports</div><div class="palette-selected-tag">✓ Selected</div></div>
+      </div>
+
+      <!-- 15 -->
+      <div class="palette-card" data-value="Copper & Dark" onclick="selectOption('color',this)">
+        <div class="palette-swatches"><div class="swatch" style="background:#1C1C1E"></div><div class="swatch" style="background:#B87333"></div><div class="swatch" style="background:#2C2C2E"></div></div>
+        <div class="palette-info"><div class="palette-name">Copper &amp; Dark</div><div class="palette-desc">Premium, masculine, elite</div><div class="palette-vibe">Best for: Luxury · Men's Brand · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- FONT SELECTION -->
+<!-- ════════════════════════════════════════
+     STEP 3 — 12 FONT / LETTER STYLES
+════════════════════════════════════════ -->
 <section id="font-selection">
   <div class="container">
     <div class="section-label">Step 3</div>
     <h2 class="section-title">Choose a Letter Style</h2>
-    <p class="section-sub">Typography sets the personality of your website. Pick a letter style that matches your brand perfectly.</p>
+    <p class="section-sub">Typography is 60% of design. Each style below creates a completely different brand personality.</p>
     <div class="font-grid" id="font-grid">
+
       <div class="font-card" data-value="Clean Modern" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Nunito',sans-serif;font-weight:800;">Aa Bb</div>
-        <div class="font-label">Clean Modern</div><div class="font-desc">Friendly, approachable, clear</div>
+        <div class="font-label">Clean Modern</div>
+        <div class="font-desc">Rounded, friendly, readable</div>
+        <div class="font-best">Best for: Edu · Startup · App</div>
         <div class="font-sample" style="font-family:'Nunito',sans-serif;">The quick brown fox jumps.</div>
       </div>
-      <div class="font-card" data-value="Bold & Strong" onclick="selectOption('font',this)">
-        <div class="font-preview" style="font-family:Georgia,serif;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Bold &amp; Strong</div><div class="font-desc">Confident, impactful, powerful</div>
-        <div class="font-sample" style="font-family:Georgia,serif;">The quick brown fox jumps.</div>
+
+      <div class="font-card" data-value="Raleway Sharp" onclick="selectOption('font',this)">
+        <div class="font-preview" style="font-family:'Raleway',sans-serif;font-weight:800;letter-spacing:-1px;">Aa Bb</div>
+        <div class="font-label">Raleway Sharp</div>
+        <div class="font-desc">Sleek, geometric, premium</div>
+        <div class="font-best">Best for: Fashion · Agency · Portfolio</div>
+        <div class="font-sample" style="font-family:'Raleway',sans-serif;font-weight:700;">The quick brown fox jumps.</div>
       </div>
+
       <div class="font-card" data-value="Classic Serif" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Playfair Display',serif;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Classic Serif</div><div class="font-desc">Traditional, trustworthy, refined</div>
+        <div class="font-label">Classic Serif</div>
+        <div class="font-desc">Traditional, trustworthy, refined</div>
+        <div class="font-best">Best for: Law · Hospital · School</div>
         <div class="font-sample" style="font-family:'Playfair Display',serif;">The quick brown fox jumps.</div>
       </div>
-      <div class="font-card" data-value="Rounded Soft" onclick="selectOption('font',this)">
-        <div class="font-preview" style="font-family:Arial,sans-serif;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Rounded Soft</div><div class="font-desc">Warm, playful, accessible</div>
-        <div class="font-sample" style="font-family:Arial,sans-serif;">The quick brown fox jumps.</div>
+
+      <div class="font-card" data-value="Cinzel Royal" onclick="selectOption('font',this)">
+        <div class="font-preview" style="font-family:'Cinzel',serif;font-weight:700;letter-spacing:1px;">Aa Bb</div>
+        <div class="font-label">Cinzel Royal</div>
+        <div class="font-desc">Ancient, majestic, high-end</div>
+        <div class="font-best">Best for: Jewellery · Hotel · Wedding</div>
+        <div class="font-sample" style="font-family:'Cinzel',serif;">THE QUICK BROWN FOX.</div>
       </div>
+
       <div class="font-card" data-value="Tall & Uppercase" onclick="selectOption('font',this)">
-        <div class="font-preview" style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">Aa Bb</div>
-        <div class="font-label">Tall &amp; Uppercase</div><div class="font-desc">Gym, sports, bold brands</div>
+        <div class="font-preview" style="font-family:'Bebas Neue',sans-serif;letter-spacing:3px;">Aa Bb</div>
+        <div class="font-label">Tall &amp; Uppercase</div>
+        <div class="font-desc">Bold, punchy, powerful</div>
+        <div class="font-best">Best for: Gym · Sports · Construction</div>
         <div class="font-sample" style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">THE QUICK BROWN FOX.</div>
       </div>
+
       <div class="font-card" data-value="Elegant Script" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Dancing Script',cursive;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Elegant Script</div><div class="font-desc">Wedding, boutique, luxury</div>
+        <div class="font-label">Elegant Script</div>
+        <div class="font-desc">Handwritten, luxurious, soft</div>
+        <div class="font-best">Best for: Salon · Bakery · Wedding</div>
         <div class="font-sample" style="font-family:'Dancing Script',cursive;">The quick brown fox jumps.</div>
       </div>
+
+      <div class="font-card" data-value="Pacifico Friendly" onclick="selectOption('font',this)">
+        <div class="font-preview" style="font-family:'Pacifico',cursive;">Aa Bb</div>
+        <div class="font-label">Pacifico Friendly</div>
+        <div class="font-desc">Retro, warm, approachable</div>
+        <div class="font-best">Best for: Cafe · Food · Kids · NGO</div>
+        <div class="font-sample" style="font-family:'Pacifico',cursive;">The quick brown fox.</div>
+      </div>
+
       <div class="font-card" data-value="Geometric Sans" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Josefin Sans',sans-serif;font-weight:700;letter-spacing:1px;">Aa Bb</div>
-        <div class="font-label">Geometric Sans</div><div class="font-desc">Tech, startup, minimal</div>
+        <div class="font-label">Geometric Sans</div>
+        <div class="font-desc">Minimal, clean, architectural</div>
+        <div class="font-best">Best for: Real Estate · IT · Fintech</div>
         <div class="font-sample" style="font-family:'Josefin Sans',sans-serif;">The quick brown fox jumps.</div>
       </div>
+
+      <div class="font-card" data-value="Exo Tech" onclick="selectOption('font',this)">
+        <div class="font-preview" style="font-family:'Exo 2',sans-serif;font-weight:800;">Aa Bb</div>
+        <div class="font-label">Exo Tech</div>
+        <div class="font-desc">Futuristic, digital, sharp</div>
+        <div class="font-best">Best for: SaaS · App · Gaming · Auto</div>
+        <div class="font-sample" style="font-family:'Exo 2',sans-serif;font-weight:700;">The quick brown fox jumps.</div>
+      </div>
+
       <div class="font-card" data-value="Newspaper Serif" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Merriweather',serif;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Newspaper Serif</div><div class="font-desc">News, blog, editorial, authority</div>
+        <div class="font-label">Newspaper Serif</div>
+        <div class="font-desc">Editorial, serious, credible</div>
+        <div class="font-best">Best for: News · Blog · Magazine</div>
         <div class="font-sample" style="font-family:'Merriweather',serif;">The quick brown fox jumps.</div>
       </div>
+
+      <div class="font-card" data-value="Cormorant Luxury" onclick="selectOption('font',this)">
+        <div class="font-preview" style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2rem;">Aa Bb</div>
+        <div class="font-label">Cormorant Luxury</div>
+        <div class="font-desc">Ultra-refined, editorial, high fashion</div>
+        <div class="font-best">Best for: Luxury Brand · Bridal · Hotel</div>
+        <div class="font-sample" style="font-family:'Cormorant Garamond',serif;">The quick brown fox jumps.</div>
+      </div>
+
       <div class="font-card" data-value="Monospace Code" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Space Mono',monospace;font-weight:700;">Aa Bb</div>
-        <div class="font-label">Monospace Code</div><div class="font-desc">Tech, developer, modern edge</div>
+        <div class="font-label">Monospace Code</div>
+        <div class="font-desc">Technical, developer, raw edge</div>
+        <div class="font-best">Best for: Developer · Agency · Tech</div>
         <div class="font-sample" style="font-family:'Space Mono',monospace;">The quick brown fox.</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- LAYOUT SELECTOR -->
+<!-- ════════════════════════════════════════
+     STEP 4 — 6 LAYOUT STYLES
+════════════════════════════════════════ -->
 <section id="layout-selector">
   <div class="container">
     <div class="section-label">Step 4</div>
     <h2 class="section-title">Select a Layout Style</h2>
-    <p class="section-sub">The layout defines how content is arranged on your pages.</p>
+    <p class="section-sub">Layout controls how your visitor's eye travels through the page — choose one that fits your content style.</p>
     <div class="layout-grid" id="layout-grid">
+
+      <!-- 1 Hero Split -->
       <div class="layout-card" data-value="Hero Split" onclick="selectOption('layout',this)">
-        <div class="layout-visual"><div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block tall" style="background:#ddd"></div></div><div class="lv-row"><div class="lv-block short"></div></div></div>
-        <div class="layout-name">Hero Split</div><div class="layout-desc">Text left, image right — classic landing page feel</div>
+        <div class="layout-visual">
+          <div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block dark tall"></div></div>
+          <div class="lv-row"><div class="lv-block short"></div><div class="lv-block short" style="opacity:0.4"></div></div>
+        </div>
+        <div class="layout-name">Hero Split</div>
+        <div class="layout-desc">Text left, image right — classic power layout</div>
+        <div class="layout-best">Best for: Business · Startup · Medical</div>
       </div>
-      <div class="layout-card" data-value="Centered Focus" onclick="selectOption('layout',this)">
-        <div class="layout-visual"><div class="lv-center"><div class="lv-block accent med" style="width:50%;flex:none;"></div><div class="lv-block short" style="width:70%;flex:none;background:#ddd"></div><div class="lv-block short" style="width:40%;flex:none;background:#ddd"></div></div></div>
-        <div class="layout-name">Centered Focus</div><div class="layout-desc">All content centered — clean and minimal look</div>
+
+      <!-- 2 Centered Hero -->
+      <div class="layout-card" data-value="Centered Hero" onclick="selectOption('layout',this)">
+        <div class="layout-visual">
+          <div class="lv-center">
+            <div class="lv-block accent med" style="width:55%;"></div>
+            <div class="lv-block short" style="width:75%;background:#ccc"></div>
+            <div class="lv-block short" style="width:40%;background:#ccc"></div>
+            <div class="lv-block xshort" style="width:28%;background:rgba(255,107,0,0.5);border-radius:20px;"></div>
+          </div>
+        </div>
+        <div class="layout-name">Centered Hero</div>
+        <div class="layout-desc">Bold center-stage headline with CTA below</div>
+        <div class="layout-best">Best for: Portfolio · SaaS · App Landing</div>
       </div>
+
+      <!-- 3 Grid Cards -->
       <div class="layout-card" data-value="Grid Cards" onclick="selectOption('layout',this)">
-        <div class="layout-visual"><div class="lv-row" style="margin-bottom:6px"><div class="lv-block accent med"></div><div class="lv-block accent med"></div><div class="lv-block accent med"></div></div><div class="lv-row"><div class="lv-block short" style="background:#ddd"></div><div class="lv-block short" style="background:#ddd"></div><div class="lv-block short" style="background:#ddd"></div></div></div>
-        <div class="layout-name">Grid Cards</div><div class="layout-desc">Services or products displayed as cards in a grid</div>
+        <div class="layout-visual">
+          <div class="lv-row" style="margin-bottom:5px">
+            <div class="lv-block accent med"></div>
+            <div class="lv-block accent med"></div>
+            <div class="lv-block accent med"></div>
+          </div>
+          <div class="lv-row">
+            <div class="lv-block xshort" style="background:#ccc"></div>
+            <div class="lv-block xshort" style="background:#ccc"></div>
+            <div class="lv-block xshort" style="background:#ccc"></div>
+          </div>
+        </div>
+        <div class="layout-name">Grid Cards</div>
+        <div class="layout-desc">Services or products in a clean card grid</div>
+        <div class="layout-best">Best for: E-Commerce · Coaching · Agency</div>
       </div>
-      <div class="layout-card" data-value="Split Sections" onclick="selectOption('layout',this)">
-        <div class="layout-visual" style="flex-direction:column;gap:6px;"><div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block tall" style="background:#ddd"></div></div><div class="lv-row"><div class="lv-block tall" style="background:#ddd"></div><div class="lv-block accent tall"></div></div></div>
-        <div class="layout-name">Split Sections</div><div class="layout-desc">Alternating left-right sections for storytelling</div>
+
+      <!-- 4 Alternating Sections -->
+      <div class="layout-card" data-value="Alternating Sections" onclick="selectOption('layout',this)">
+        <div class="layout-visual" style="gap:5px;">
+          <div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block dark tall"></div></div>
+          <div class="lv-row"><div class="lv-block dark tall"></div><div class="lv-block accent tall"></div></div>
+        </div>
+        <div class="layout-name">Alternating Sections</div>
+        <div class="layout-desc">Left-right flip sections for storytelling flow</div>
+        <div class="layout-best">Best for: Restaurant · Real Estate · Edu</div>
       </div>
+
+      <!-- 5 Magazine Editorial -->
+      <div class="layout-card" data-value="Magazine Editorial" onclick="selectOption('layout',this)">
+        <div class="layout-visual" style="gap:4px;">
+          <div class="lv-row" style="height:36px"><div class="lv-block accent" style="flex:2;height:36px"></div><div class="lv-block dark" style="flex:1;height:36px"></div></div>
+          <div class="lv-row">
+            <div class="lv-block short" style="background:#ccc"></div>
+            <div class="lv-block short" style="background:#ccc"></div>
+          </div>
+          <div class="lv-row">
+            <div class="lv-block xshort"></div>
+            <div class="lv-block xshort"></div>
+            <div class="lv-block xshort"></div>
+          </div>
+        </div>
+        <div class="layout-name">Magazine Editorial</div>
+        <div class="layout-desc">Asymmetric bold blocks — editorial and dynamic</div>
+        <div class="layout-best">Best for: Blog · News · Creative Agency</div>
+      </div>
+
+      <!-- 6 Full Screen Sections -->
+      <div class="layout-card" data-value="Full Screen Sections" onclick="selectOption('layout',this)">
+        <div class="layout-visual" style="gap:4px;">
+          <div class="lv-row"><div class="lv-block accent" style="height:32px;border-radius:6px;"></div></div>
+          <div class="lv-row"><div class="lv-block dark" style="height:28px;border-radius:6px;"></div></div>
+          <div class="lv-row"><div class="lv-block" style="height:18px;border-radius:6px;background:#ddd"></div></div>
+        </div>
+        <div class="layout-name">Full Screen Sections</div>
+        <div class="layout-desc">Each section fills the screen — immersive scrolling</div>
+        <div class="layout-best">Best for: Luxury · Hotel · Photography</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -782,30 +933,12 @@
     <h2 class="section-title">Our Recent Work</h2>
     <p class="section-sub">Some of the websites Vedant has built for happy clients across India.</p>
     <div class="work-grid">
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#FF6B00,#FF8C33);">🏋️</div>
-        <div class="work-body"><span class="work-tag">Gym</span><h3 class="work-title">FitZone Ahmedabad</h3><p class="work-desc">A bold fitness website with membership plans, class schedules, and trainer profiles.</p><div class="work-footer"><span class="work-meta">2024 · Orange Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#2563EB,#60A5FA);">📚</div>
-        <div class="work-body"><span class="work-tag">Educational</span><h3 class="work-title">BrightMinds Academy</h3><p class="work-desc">Clean coaching institute site with course listings, results board, and online admission.</p><div class="work-footer"><span class="work-meta">2024 · Blue Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#1A1A1A,#4a4a4a);">🍽️</div>
-        <div class="work-body"><span class="work-tag">Restaurant</span><h3 class="work-title">The Royal Kitchen</h3><p class="work-desc">Elegant restaurant website with online menu, reservations, and chef's special section.</p><div class="work-footer"><span class="work-meta">2024 · Black &amp; Gold</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#16A34A,#4ADE80);">🏥</div>
-        <div class="work-body"><span class="work-tag">Medical</span><h3 class="work-title">CareFirst Clinic</h3><p class="work-desc">Trustworthy healthcare site with doctor profiles, appointment booking, and services.</p><div class="work-footer"><span class="work-meta">2023 · Green Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">💼</div>
-        <div class="work-body"><span class="work-tag">Startup</span><h3 class="work-title">NovaTech Solutions</h3><p class="work-desc">Modern B2B startup site with service pages, case studies, and lead generation form.</p><div class="work-footer"><span class="work-meta">2023 · Purple Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb" style="background:linear-gradient(135deg,#DC2626,#F87171);">🏠</div>
-        <div class="work-body"><span class="work-tag">Real Estate</span><h3 class="work-title">Shree Builders Surat</h3><p class="work-desc">Property listing site with project gallery, floor plans, and enquiry form integration.</p><div class="work-footer"><span class="work-meta">2023 · Red Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div>
-      </div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#FF6B00,#FF8C33);">🏋️</div><div class="work-body"><span class="work-tag">Gym</span><h3 class="work-title">FitZone Ahmedabad</h3><p class="work-desc">A bold fitness website with membership plans, class schedules, and trainer profiles.</p><div class="work-footer"><span class="work-meta">2024 · Orange Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#2563EB,#60A5FA);">📚</div><div class="work-body"><span class="work-tag">Educational</span><h3 class="work-title">BrightMinds Academy</h3><p class="work-desc">Clean coaching institute site with course listings, results board, and online admission.</p><div class="work-footer"><span class="work-meta">2024 · Blue Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#1A1A1A,#4a4a4a);">🍽️</div><div class="work-body"><span class="work-tag">Restaurant</span><h3 class="work-title">The Royal Kitchen</h3><p class="work-desc">Elegant restaurant website with online menu, reservations, and chef's special section.</p><div class="work-footer"><span class="work-meta">2024 · Black &amp; Gold</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#16A34A,#4ADE80);">🏥</div><div class="work-body"><span class="work-tag">Medical</span><h3 class="work-title">CareFirst Clinic</h3><p class="work-desc">Trustworthy healthcare site with doctor profiles, appointment booking, and services.</p><div class="work-footer"><span class="work-meta">2023 · Green Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">💼</div><div class="work-body"><span class="work-tag">Startup</span><h3 class="work-title">NovaTech Solutions</h3><p class="work-desc">Modern B2B startup site with service pages, case studies, and lead generation form.</p><div class="work-footer"><span class="work-meta">2023 · Purple Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
+      <div class="work-card"><div class="work-thumb" style="background:linear-gradient(135deg,#DC2626,#F87171);">🏠</div><div class="work-body"><span class="work-tag">Real Estate</span><h3 class="work-title">Shree Builders Surat</h3><p class="work-desc">Property listing site with project gallery, floor plans, and enquiry form integration.</p><div class="work-footer"><span class="work-meta">2023 · Red Theme</span><button class="btn-outline" onclick="window.open('#','_blank')">View Website</button></div></div></div>
     </div>
   </div>
 </section>
@@ -817,21 +950,9 @@
     <h2 class="section-title">What Our Clients Say</h2>
     <p class="section-sub">Real feedback from businesses who trusted Vedant and VikalpSphere.</p>
     <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Vedant made the whole process so easy. I just picked colors and layout I liked and he built exactly that. No confusing calls, no revisions!"</p>
-        <div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajesh Kulkarni</div><div class="testi-role">Owner, FitZone Gym · Ahmedabad</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Finally a web developer who asks what I want before building. Our school site looks exactly like the preview we chose. Students and parents love it!"</p>
-        <div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Principal · BrightMinds Academy, Surat</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Quick delivery, clean design, and very professional. The live preview idea saved so much back-and-forth. Vedant understood our brand instantly."</p>
-        <div class="testi-author"><div class="testi-avatar">SA</div><div><div class="testi-name">Sameer Ansari</div><div class="testi-role">Founder · NovaTech Solutions, Baroda</div></div></div>
-      </div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Vedant made the whole process so easy. I just picked colors and layout I liked and he built exactly that. No confusing calls, no revisions!"</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajesh Kulkarni</div><div class="testi-role">Owner, FitZone Gym · Ahmedabad</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Finally a web developer who asks what I want before building. Our school site looks exactly like the preview we chose. Students and parents love it!"</p><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Principal · BrightMinds Academy, Surat</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Quick delivery, clean design, and very professional. The live preview idea saved so much back-and-forth. Vedant understood our brand instantly."</p><div class="testi-author"><div class="testi-avatar">SA</div><div><div class="testi-name">Sameer Ansari</div><div class="testi-role">Founder · NovaTech Solutions, Baroda</div></div></div></div>
     </div>
   </div>
 </section>
@@ -841,9 +962,7 @@
   <div class="container" style="text-align:center;">
     <h2 class="cta-title">Ready to Build Your Website?</h2>
     <p class="cta-sub">You've made your selections. Now let Vedant turn your vision into a real, live website — fast.</p>
-    <a class="btn-white" href="https://wa.me/918452001063" target="_blank" rel="noopener">
-      📩 Contact Vedant on WhatsApp
-    </a>
+    <a class="btn-white" href="https://wa.me/918452001063" target="_blank" rel="noopener">📩 Contact Vedant on WhatsApp</a>
     <p style="margin-top:20px; opacity:0.75; font-size:0.85rem;">📞 +91 84520 01063 &nbsp;·&nbsp; Responds within 24 hours &nbsp;·&nbsp; No upfront payment required</p>
   </div>
 </section>
@@ -854,37 +973,13 @@
     <div class="footer-brand">
       <div class="footer-logo">
         Vikalp<span>Sphere</span>
-        <img src="LogoF.png" alt="VikalpSphere Logo" class="footer-logo-img" onerror="this.style.display='none'"/>
+        <img src="LogoFFF.png" alt="VikalpSphere Logo" class="footer-logo-img" onerror="this.style.display='none'"/>
       </div>
       <p class="footer-tagline">India's simplest way to plan and build your website. Founded by Vedant Tiwari — you choose the look, we do the rest.</p>
     </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#website-type">Explore Types</a></li>
-        <li><a href="#our-work">Our Work</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#">Website Design</a></li>
-        <li><a href="#">Website Development</a></li>
-        <li><a href="#">SEO &amp; Speed</a></li>
-        <li><a href="#">Maintenance</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Vedant</h4>
-      <ul>
-        <li><a href="tel:+918452001063">+91 84520 01063</a></li>
-        <li><a href="mailto:hello@vikalpphere.in">hello@vikalpphere.in</a></li>
-        <li><a href="https://wa.me/918452001063" target="_blank">WhatsApp Us</a></li>
-        <li><a href="#">India</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#hero">Home</a></li><li><a href="#how">How It Works</a></li><li><a href="#website-type">Explore Types</a></li><li><a href="#our-work">Our Work</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Website Design</a></li><li><a href="#">Website Development</a></li><li><a href="#">SEO &amp; Speed</a></li><li><a href="#">Maintenance</a></li></ul></div>
+    <div class="footer-col"><h4>Contact Vedant</h4><ul><li><a href="tel:+918452001063">+91 84520 01063</a></li><li><a href="mailto:hello@vikalpphere.in">hello@vikalpphere.in</a></li><li><a href="https://wa.me/918452001063" target="_blank">WhatsApp Us</a></li><li><a href="#">India</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2024 VikalpSphere by Vedant Tiwari. All rights reserved.</span>

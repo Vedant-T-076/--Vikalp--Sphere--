@@ -23,7 +23,75 @@
     --font: 'Nunito', sans-serif;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font); background: var(--white); color: var(--dark); line-height: 1.6; }
+  body { font-family: var(--font); background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+  
+  /* PREMIUM PRELOADER STYLES */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.6s ease, visibility 0.6s;
+  }
+  .loader-content {
+    text-align: center;
+  }
+  .sphere-loader {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+  .sphere-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid var(--orange-pale);
+    border-top: 4px solid var(--orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .sphere-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    background-color: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--orange);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  .loader-text {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .loader-text span { color: var(--orange); }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+  body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* EXISTING STYLES */
   img { max-width: 100%; display: block; }
   a { text-decoration: none; color: inherit; }
 
@@ -433,7 +501,16 @@
 </head>
 <body>
 
-<!-- WHATSAPP FLOATING BUTTON -->
+<div id="preloader">
+  <div class="loader-content">
+    <div class="sphere-loader">
+      <div class="sphere-inner"></div>
+      <div class="sphere-core"></div>
+    </div>
+    <div class="loader-text">Vikalp<span>Sphere</span></div>
+  </div>
+</div>
+
 <a class="wa-float" href="https://wa.me/918452001063" target="_blank" rel="noopener">
   <div class="wa-pulse"></div>
   <div class="wa-tooltip">Chat on WhatsApp</div>
@@ -442,7 +519,6 @@
   </svg>
 </a>
 
-<!-- NAVBAR -->
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
@@ -466,7 +542,6 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#hero" onclick="closeMenu()">Home</a>
   <a href="#website-type" onclick="closeMenu()">Explore</a>
@@ -474,7 +549,6 @@
   <a href="#final-cta" onclick="closeMenu()">Contact</a>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
@@ -522,7 +596,6 @@
   </div>
 </section>
 
-<!-- FOUNDER -->
 <section id="founder">
   <div class="container">
     <div class="section-label">Meet the Founder</div>
@@ -551,7 +624,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="container">
     <div class="section-label">Process</div>
@@ -566,7 +638,6 @@
   </div>
 </section>
 
-<!-- WEBSITE TYPE -->
 <section id="website-type">
   <div class="container">
     <div class="section-label">Step 1</div>
@@ -585,9 +656,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     STEP 2 — 15 COLOR COMBINATIONS
-════════════════════════════════════════ -->
 <section id="color-palette">
   <div class="container">
     <div class="section-label">Step 2</div>
@@ -595,91 +663,76 @@
     <p class="section-sub">Brand research backed palettes — each one chosen for a specific industry and emotion.</p>
     <div class="palette-grid" id="palette-grid">
 
-      <!-- 1 -->
       <div class="palette-card" data-value="Orange & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#FF8C33"></div><div class="swatch" style="background:#FFF3E8"></div></div>
         <div class="palette-info"><div class="palette-name">Orange &amp; White</div><div class="palette-desc">Energy, trust, action</div><div class="palette-vibe">Best for: Gym · Startup · Food</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 2 -->
       <div class="palette-card" data-value="Royal Blue & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1E3A8A"></div><div class="swatch" style="background:#3B82F6"></div><div class="swatch" style="background:#EFF6FF"></div></div>
         <div class="palette-info"><div class="palette-name">Royal Blue &amp; White</div><div class="palette-desc">Trust, authority, calm</div><div class="palette-vibe">Best for: Corporate · Medical · Edu</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 3 -->
       <div class="palette-card" data-value="Black & Gold" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0A0A0A"></div><div class="swatch" style="background:#C9A84C"></div><div class="swatch" style="background:#F5F0E8"></div></div>
         <div class="palette-info"><div class="palette-name">Black &amp; Gold</div><div class="palette-desc">Luxury, power, premium</div><div class="palette-vibe">Best for: Jewellery · Hotel · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 4 -->
       <div class="palette-card" data-value="Forest Green & Cream" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#064E3B"></div><div class="swatch" style="background:#10B981"></div><div class="swatch" style="background:#ECFDF5"></div></div>
         <div class="palette-info"><div class="palette-name">Forest Green &amp; Cream</div><div class="palette-desc">Natural, health, organic</div><div class="palette-vibe">Best for: Clinic · Ayurveda · Spa</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 5 -->
       <div class="palette-card" data-value="Deep Purple & Lavender" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#4C1D95"></div><div class="swatch" style="background:#8B5CF6"></div><div class="swatch" style="background:#F5F3FF"></div></div>
         <div class="palette-info"><div class="palette-name">Deep Purple &amp; Lavender</div><div class="palette-desc">Creative, bold, futuristic</div><div class="palette-vibe">Best for: Tech · Design · Agency</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 6 -->
       <div class="palette-card" data-value="Crimson & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#9B1C1C"></div><div class="swatch" style="background:#EF4444"></div><div class="swatch" style="background:#FFF5F5"></div></div>
         <div class="palette-info"><div class="palette-name">Crimson &amp; White</div><div class="palette-desc">Passion, urgency, bold</div><div class="palette-vibe">Best for: Restaurant · Sports · NGO</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 7 -->
       <div class="palette-card" data-value="Navy & Silver" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0F172A"></div><div class="swatch" style="background:#64748B"></div><div class="swatch" style="background:#F1F5F9"></div></div>
         <div class="palette-info"><div class="palette-name">Navy &amp; Silver</div><div class="palette-desc">Sleek, corporate, serious</div><div class="palette-vibe">Best for: Finance · CA · Consulting</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 8 -->
       <div class="palette-card" data-value="Maroon & Gold" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#7F1D1D"></div><div class="swatch" style="background:#D4AF37"></div><div class="swatch" style="background:#FEF9EE"></div></div>
         <div class="palette-info"><div class="palette-name">Maroon &amp; Gold</div><div class="palette-desc">Royal, heritage, traditional</div><div class="palette-vibe">Best for: School · Wedding · Trust</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 9 -->
       <div class="palette-card" data-value="Teal & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0D9488"></div><div class="swatch" style="background:#2DD4BF"></div><div class="swatch" style="background:#F0FDFA"></div></div>
         <div class="palette-info"><div class="palette-name">Teal &amp; White</div><div class="palette-desc">Fresh, modern, hygienic</div><div class="palette-vibe">Best for: Hospital · Pharma · Dental</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 10 -->
       <div class="palette-card" data-value="Charcoal & Orange" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1F2937"></div><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#F9FAFB"></div></div>
         <div class="palette-info"><div class="palette-name">Charcoal &amp; Orange</div><div class="palette-desc">Industrial, dynamic, strong</div><div class="palette-vibe">Best for: Construction · Auto · Gym</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 11 -->
       <div class="palette-card" data-value="Rose Gold & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#BE185D"></div><div class="swatch" style="background:#F9A8D4"></div><div class="swatch" style="background:#FFF1F2"></div></div>
         <div class="palette-info"><div class="palette-name">Rose Gold &amp; White</div><div class="palette-desc">Feminine, elegant, warm</div><div class="palette-vibe">Best for: Beauty · Salon · Boutique</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 12 -->
       <div class="palette-card" data-value="Midnight Blue & Cyan" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0C1445"></div><div class="swatch" style="background:#06B6D4"></div><div class="swatch" style="background:#ECFEFF"></div></div>
         <div class="palette-info"><div class="palette-name">Midnight Blue &amp; Cyan</div><div class="palette-desc">Innovation, digital, sharp</div><div class="palette-vibe">Best for: IT · SaaS · App · Fintech</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 13 -->
       <div class="palette-card" data-value="Saffron & Ivory" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#D97706"></div><div class="swatch" style="background:#FCD34D"></div><div class="swatch" style="background:#FFFBEB"></div></div>
         <div class="palette-info"><div class="palette-name">Saffron &amp; Ivory</div><div class="palette-desc">Warm, Indian, festive</div><div class="palette-vibe">Best for: Catering · Events · Cultural</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 14 -->
       <div class="palette-card" data-value="Slate & Lime" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#334155"></div><div class="swatch" style="background:#84CC16"></div><div class="swatch" style="background:#F7FEE7"></div></div>
         <div class="palette-info"><div class="palette-name">Slate &amp; Lime</div><div class="palette-desc">Eco, modern, fresh</div><div class="palette-vibe">Best for: Organic · Startup · Sports</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
 
-      <!-- 15 -->
       <div class="palette-card" data-value="Copper & Dark" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1C1C1E"></div><div class="swatch" style="background:#B87333"></div><div class="swatch" style="background:#2C2C2E"></div></div>
         <div class="palette-info"><div class="palette-name">Copper &amp; Dark</div><div class="palette-desc">Premium, masculine, elite</div><div class="palette-vibe">Best for: Luxury · Men's Brand · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
@@ -689,9 +742,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     STEP 3 — 12 FONT / LETTER STYLES
-════════════════════════════════════════ -->
 <section id="font-selection">
   <div class="container">
     <div class="section-label">Step 3</div>
@@ -799,9 +849,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     STEP 4 — 6 LAYOUT STYLES
-════════════════════════════════════════ -->
 <section id="layout-selector">
   <div class="container">
     <div class="section-label">Step 4</div>
@@ -809,7 +856,6 @@
     <p class="section-sub">Layout controls how your visitor's eye travels through the page — choose one that fits your content style.</p>
     <div class="layout-grid" id="layout-grid">
 
-      <!-- 1 Hero Split -->
       <div class="layout-card" data-value="Hero Split" onclick="selectOption('layout',this)">
         <div class="layout-visual">
           <div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block dark tall"></div></div>
@@ -820,7 +866,6 @@
         <div class="layout-best">Best for: Business · Startup · Medical</div>
       </div>
 
-      <!-- 2 Centered Hero -->
       <div class="layout-card" data-value="Centered Hero" onclick="selectOption('layout',this)">
         <div class="layout-visual">
           <div class="lv-center">
@@ -835,7 +880,6 @@
         <div class="layout-best">Best for: Portfolio · SaaS · App Landing</div>
       </div>
 
-      <!-- 3 Grid Cards -->
       <div class="layout-card" data-value="Grid Cards" onclick="selectOption('layout',this)">
         <div class="layout-visual">
           <div class="lv-row" style="margin-bottom:5px">
@@ -854,7 +898,6 @@
         <div class="layout-best">Best for: E-Commerce · Coaching · Agency</div>
       </div>
 
-      <!-- 4 Alternating Sections -->
       <div class="layout-card" data-value="Alternating Sections" onclick="selectOption('layout',this)">
         <div class="layout-visual" style="gap:5px;">
           <div class="lv-row"><div class="lv-block accent tall"></div><div class="lv-block dark tall"></div></div>
@@ -865,7 +908,6 @@
         <div class="layout-best">Best for: Restaurant · Real Estate · Edu</div>
       </div>
 
-      <!-- 5 Magazine Editorial -->
       <div class="layout-card" data-value="Magazine Editorial" onclick="selectOption('layout',this)">
         <div class="layout-visual" style="gap:4px;">
           <div class="lv-row" style="height:36px"><div class="lv-block accent" style="flex:2;height:36px"></div><div class="lv-block dark" style="flex:1;height:36px"></div></div>
@@ -884,7 +926,6 @@
         <div class="layout-best">Best for: Blog · News · Creative Agency</div>
       </div>
 
-      <!-- 6 Full Screen Sections -->
       <div class="layout-card" data-value="Full Screen Sections" onclick="selectOption('layout',this)">
         <div class="layout-visual" style="gap:4px;">
           <div class="lv-row"><div class="lv-block accent" style="height:32px;border-radius:6px;"></div></div>
@@ -900,7 +941,6 @@
   </div>
 </section>
 
-<!-- LIVE PREVIEW -->
 <section id="live-preview">
   <div class="container">
     <div class="section-label">Your Selection Summary</div>
@@ -926,7 +966,6 @@
   </div>
 </section>
 
-<!-- OUR WORK -->
 <section id="our-work">
   <div class="container">
     <div class="section-label">Portfolio</div>
@@ -943,7 +982,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="container">
     <div class="section-label">Client Reviews</div>
@@ -957,7 +995,6 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section id="final-cta">
   <div class="container" style="text-align:center;">
     <h2 class="cta-title">Ready to Build Your Website?</h2>
@@ -967,7 +1004,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -988,6 +1024,14 @@
 </footer>
 
 <script>
+  // PRELOADER SCRIPT
+  window.addEventListener('load', function() {
+    // Small delay to ensure smooth transition
+    setTimeout(function() {
+      document.body.classList.add('loaded');
+    }, 1200); 
+  });
+
   const state = { type: null, color: null, font: null, layout: null };
 
   window.addEventListener('scroll', () => {

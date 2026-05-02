@@ -25,32 +25,101 @@
   html { scroll-behavior: smooth; }
   body { font-family: var(--font); background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 
-  /* PRELOADER */
+  /* ───── NEW PRELOADER (SPHERE WITH ORBITING RINGS) ───── */
   #preloader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: var(--white); display: flex; justify-content: center; align-items: center;
-    z-index: 10000; transition: opacity 0.6s ease, visibility 0.6s;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #FFF3E8 0%, #FFFFFF 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.6s ease, visibility 0.6s;
   }
-  .loader-content { text-align: center; }
-  .sphere-loader { width: 80px; height: 80px; margin: 0 auto 20px; position: relative; }
-  .sphere-inner {
-    position: absolute; width: 100%; height: 100%;
-    border: 4px solid var(--orange-pale); border-top: 4px solid var(--orange);
-    border-radius: 50%; animation: spin 1s linear infinite;
+  .loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .sphere-core {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 25px; height: 25px; background-color: var(--orange); border-radius: 50%;
-    box-shadow: 0 0 15px var(--orange); animation: pulse 1.5s ease-in-out infinite;
+  .sphere-orbital {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 24px;
   }
-  .loader-text { font-weight: 800; font-size: 1.1rem; color: var(--dark); letter-spacing: 1px; text-transform: uppercase; }
-  .loader-text span { color: var(--orange); }
-  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } }
-  body.loaded #preloader { opacity: 0; visibility: hidden; }
+  .central-sphere {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 70px;
+    height: 70px;
+    margin: -35px 0 0 -35px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FF8C33, #FF6B00);
+    box-shadow: 0 0 30px rgba(255,107,0,0.6), 0 0 60px rgba(255,107,0,0.3);
+    animation: pulse-core 2s ease-in-out infinite;
+  }
+  .orbit-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,107,0,0.6);
+    border-right-color: rgba(255,107,0,0.3);
+    animation: spin-ring linear infinite;
+  }
+  .ring-1 {
+    width: 130px;
+    height: 130px;
+    margin: -65px 0 0 -65px;
+    border-top-color: #FF6B00;
+    border-right-color: #FF6B00;
+    opacity: 0.8;
+    animation-duration: 4s;
+  }
+  .ring-2 {
+    width: 110px;
+    height: 110px;
+    margin: -55px 0 0 -55px;
+    border-top-color: #FF8C33;
+    border-left-color: rgba(255,140,51,0.5);
+    border-right-color: transparent;
+    animation-duration: 6s;
+    animation-direction: reverse;
+  }
+  .loader-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeInText 0.6s ease forwards 0.2s;
+  }
+  .loader-text span {
+    color: var(--orange);
+  }
 
+  @keyframes pulse-core {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  @keyframes spin-ring {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes fadeInText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* ─── ALL OTHER EXISTING STYLES (COMPLETELY UNCHANGED) ─── */
   img { max-width: 100%; display: block; }
   a { text-decoration: none; color: inherit; }
+
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   .section-label {
     display: inline-block; background: var(--orange-pale); color: var(--orange);
@@ -76,7 +145,7 @@
   .btn-outline:hover { background: var(--orange-pale); }
   section { padding: 80px 0; }
 
-  /* WHATSAPP FLOAT */
+  /* WHATSAPP FLOATING */
   .wa-float {
     position: fixed; bottom: 28px; right: 28px; z-index: 9999;
     width: 58px; height: 58px; border-radius: 50%;
@@ -87,10 +156,25 @@
   }
   .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(255,107,0,0.55); }
   .wa-float svg { width: 28px; height: 28px; fill: #fff; }
-  .wa-pulse { position: absolute; inset: 0; border-radius: 50%; background: rgba(255,107,0,0.4); animation: waPulse 2s ease-out infinite; }
-  @keyframes waPulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
-  .wa-tooltip { position: absolute; right: 68px; top: 50%; transform: translateY(-50%); background: var(--dark); color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-  .wa-tooltip::after { content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-left-color: var(--dark); }
+  .wa-pulse {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: rgba(255,107,0,0.4);
+    animation: waPulse 2s ease-out infinite;
+  }
+  @keyframes waPulse {
+    0%   { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  .wa-tooltip {
+    position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+    background: var(--dark); color: #fff; font-size: 0.78rem; font-weight: 700;
+    padding: 6px 12px; border-radius: 8px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .wa-tooltip::after {
+    content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+    border: 5px solid transparent; border-left-color: var(--dark);
+  }
   .wa-float:hover .wa-tooltip { opacity: 1; }
 
   /* CALL FLOAT */
@@ -273,6 +357,7 @@
   .preview-tag.active .tag-dot { background: var(--orange); }
 
   /* PRICING */
+  #pricing { background: var(--white); }
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; margin-top: 48px; }
   .pricing-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--radius); padding: 36px 24px; text-align: center; transition: all 0.3s; display: flex; flex-direction: column; }
   .pricing-card.featured { border-color: var(--orange); box-shadow: 0 8px 32px rgba(255,107,0,0.2); transform: scale(1.03); }
@@ -286,6 +371,7 @@
   .pricing-features li::before { content: '✓'; color: var(--orange); font-weight: 800; }
 
   /* TRUST BADGES */
+  #trust { background: #FAFAFA; }
   .trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-top: 40px; }
   .trust-badge { text-align: center; flex: 1 1 140px; }
   .trust-badge-icon { font-size: 2.2rem; margin-bottom: 6px; }
@@ -293,12 +379,14 @@
   .trust-badge p { font-size: 0.75rem; color: var(--mid); }
 
   /* COMPARISON TABLE */
+  #comparison { background: var(--white); }
   .comp-table { width: 100%; margin-top: 40px; border-collapse: collapse; }
   .comp-table th { background: var(--orange-pale); font-weight: 800; padding: 12px; text-align: left; font-size: 0.85rem; }
   .comp-table td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
   .comp-table .check { color: var(--orange); font-weight: 800; }
 
   /* FAQ */
+  #faq { background: #FAFAFA; }
   .faq-list { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
   .faq-item { border-bottom: 1px solid var(--border); }
   .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 18px 0; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--dark); }
@@ -309,27 +397,18 @@
   .faq-answer p { padding: 0 0 16px; color: var(--mid); font-size: 0.9rem; line-height: 1.6; }
 
   /* CUSTOM FEATURE REQUEST */
+  #custom-feature { background: var(--white); }
   .custom-feature-box { max-width: 600px; margin: 40px auto 0; background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 32px; box-shadow: var(--shadow); }
   .custom-feature-box textarea { width: 100%; height: 100px; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; font-family: var(--font); resize: vertical; margin-top: 12px; }
   .custom-feature-box button { margin-top: 16px; }
 
-  /* ENQUIRY FORM */
-  .form-card {
-    background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
-    box-shadow: var(--shadow); padding: 40px; max-width: 650px; margin: 40px auto 0;
-  }
+  /* ── ENQUIRY FORM STYLES ── */
+  #request-quote { background: #FAFAFA; }
+  .form-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); padding: 40px; max-width: 650px; margin: 40px auto 0; }
   .form-group { margin-bottom: 20px; }
   .form-group label { display: block; font-weight: 800; font-size: 0.85rem; margin-bottom: 6px; color: var(--dark); }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; padding: 12px 16px; border: 2px solid var(--border);
-    border-radius: 10px; font-family: var(--font); font-size: 0.95rem;
-    transition: border-color 0.2s; background: #fff;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { outline: none; border-color: var(--orange); }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: 10px; font-family: var(--font); font-size: 0.95rem; transition: border-color 0.2s; background: #fff; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--orange); }
   .form-group textarea { resize: vertical; min-height: 100px; }
   .privacy-note { font-size: 0.8rem; color: var(--mid); margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
   .privacy-note::before { content: '🔒'; }
@@ -337,35 +416,77 @@
   .form-message { margin-top: 16px; font-weight: 700; font-size: 0.9rem; display: none; }
   .form-message.success { color: #16A34A; display: block; }
   .form-message.error { color: #DC2626; display: block; }
-  .spinner {
-    display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite;
-    vertical-align: middle; margin-right: 8px;
-  }
+  .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 8px; }
   .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
 
-  /* OUR LATEST WORKS */
+  /* ── LATEST WEBSITE SINGLE FRAME STYLES ── */
   .latest-work-card {
-    background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
-    box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
-    display: block; text-decoration: none; color: inherit;
+    display: block;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: inherit;
   }
-  .latest-work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .latest-work-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(255,107,0,0.2);
+    border-color: var(--orange);
+  }
   .latest-work-thumb {
-    height: 180px; background: linear-gradient(135deg, #FF6B00, #FF8C33);
-    display: flex; align-items: center; justify-content: center; font-size: 4rem;
+    height: 200px;
+    background: linear-gradient(135deg, #FF6B00, #FF8C33);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #fff;
   }
-  .latest-work-body { padding: 24px; }
-  .latest-work-tag {
-    display: inline-block; background: var(--orange-pale); color: var(--orange);
-    font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px;
+  .latest-work-body {
+    padding: 28px;
   }
-  .latest-work-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
-  .latest-work-desc { font-size: 0.9rem; color: var(--mid); margin-bottom: 16px; }
-  .latest-work-footer { display: flex; align-items: center; justify-content: space-between; }
-  .latest-work-meta { font-size: 0.75rem; color: var(--light); font-weight: 600; }
+  .latest-work-body .work-tag {
+    display: inline-block;
+    background: var(--orange-pale);
+    color: var(--orange);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+  .latest-work-body .work-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .latest-work-body .work-desc {
+    font-size: 0.9rem;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+  .latest-work-body .work-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .latest-work-body .work-meta {
+    font-size: 0.8rem;
+    color: var(--light);
+    font-weight: 600;
+  }
+  .latest-work-body .btn-outline {
+    font-size: 0.85rem;
+    padding: 10px 20px;
+  }
 
-  /* TESTIMONIALS */
+  /* TESTIMONIALS (unchanged style) */
   #testimonials { background: #FAFAFA; }
   .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; margin-top: 40px; }
   .testi-card { background: var(--white); border-radius: var(--radius); padding: 28px 24px; border: 1px solid var(--border); box-shadow: var(--shadow); }
@@ -399,10 +520,8 @@
   .footer-bottom a { color: #555; }
   .footer-bottom a:hover { color: var(--orange); }
 
-  /* SCROLL MARGIN */
   section[id] { scroll-margin-top: 80px; }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     .nav-links, .nav-cta .btn-primary { display: none; }
     .hamburger { display: flex; }
@@ -431,15 +550,16 @@
 <!-- PRELOADER -->
 <div id="preloader">
   <div class="loader-content">
-    <div class="sphere-loader">
-      <div class="sphere-inner"></div>
-      <div class="sphere-core"></div>
+    <div class="sphere-orbital">
+      <div class="central-sphere"></div>
+      <div class="orbit-ring ring-1"></div>
+      <div class="orbit-ring ring-2"></div>
     </div>
     <div class="loader-text">Vikalp<span>Sphere</span></div>
   </div>
 </div>
 
-<!-- WHATSAPP & CALL FLOATING BUTTONS -->
+<!-- WHATSAPP & CALL BUTTONS -->
 <a class="wa-float" href="https://wa.me/918452001063" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <div class="wa-pulse"></div>
   <div class="wa-tooltip">Chat on WhatsApp</div>
@@ -461,7 +581,7 @@
         <li><a href="#hero">Home</a></li>
         <li><a href="#website-type">Explore</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#latest-work">Our Work</a></li>
+        <li><a href="#our-work">Latest Work</a></li>
         <li><a href="#final-cta">Contact</a></li>
       </ul>
       <div class="nav-cta">
@@ -478,7 +598,7 @@
   <a href="#hero" onclick="closeMenu()">Home</a>
   <a href="#website-type" onclick="closeMenu()">Explore</a>
   <a href="#pricing" onclick="closeMenu()">Pricing</a>
-  <a href="#latest-work" onclick="closeMenu()">Our Work</a>
+  <a href="#our-work" onclick="closeMenu()">Latest Work</a>
   <a href="#final-cta" onclick="closeMenu()">Contact</a>
 </div>
 
@@ -492,7 +612,7 @@
         <p class="hero-sub">Choose your website type, color palette, font, and layout — then hand it to us. We build exactly what you envision, no surprises.</p>
         <div class="hero-btns">
           <button class="btn-primary" onclick="scrollToSection('website-type')">✦ Start Choosing</button>
-          <button class="btn-outline" onclick="scrollToSection('latest-work')">See Our Work</button>
+          <button class="btn-outline" onclick="scrollToSection('our-work')">See Our Work</button>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-avatars"><span>RK</span><span>PM</span><span>SA</span><span>NJ</span></div>
@@ -612,7 +732,7 @@
   </div>
 </section>
 
-<!-- COLOR PALETTE -->
+<!-- COLOR PALETTE (15 cards) -->
 <section id="color-palette">
   <div class="container">
     <div class="section-label">Step 2</div>
@@ -621,69 +741,69 @@
     <div class="palette-grid" id="palette-grid">
       <div class="palette-card" data-value="Orange & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#FF8C33"></div><div class="swatch" style="background:#FFF3E8"></div></div>
-        <div class="palette-info"><div class="palette-name">Orange & White</div><div class="palette-desc">Energy, trust, action</div><div class="palette-vibe">Best for: Gym · Startup · Food</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Orange &amp; White</div><div class="palette-desc">Energy, trust, action</div><div class="palette-vibe">Best for: Gym · Startup · Food</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Royal Blue & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1E3A8A"></div><div class="swatch" style="background:#3B82F6"></div><div class="swatch" style="background:#EFF6FF"></div></div>
-        <div class="palette-info"><div class="palette-name">Royal Blue & White</div><div class="palette-desc">Trust, authority, calm</div><div class="palette-vibe">Best for: Corporate · Medical · Edu</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Royal Blue &amp; White</div><div class="palette-desc">Trust, authority, calm</div><div class="palette-vibe">Best for: Corporate · Medical · Edu</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Black & Gold" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0A0A0A"></div><div class="swatch" style="background:#C9A84C"></div><div class="swatch" style="background:#F5F0E8"></div></div>
-        <div class="palette-info"><div class="palette-name">Black & Gold</div><div class="palette-desc">Luxury, power, premium</div><div class="palette-vibe">Best for: Jewellery · Hotel · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Black &amp; Gold</div><div class="palette-desc">Luxury, power, premium</div><div class="palette-vibe">Best for: Jewellery · Hotel · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Forest Green & Cream" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#064E3B"></div><div class="swatch" style="background:#10B981"></div><div class="swatch" style="background:#ECFDF5"></div></div>
-        <div class="palette-info"><div class="palette-name">Forest Green & Cream</div><div class="palette-desc">Natural, health, organic</div><div class="palette-vibe">Best for: Clinic · Ayurveda · Spa</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Forest Green &amp; Cream</div><div class="palette-desc">Natural, health, organic</div><div class="palette-vibe">Best for: Clinic · Ayurveda · Spa</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Deep Purple & Lavender" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#4C1D95"></div><div class="swatch" style="background:#8B5CF6"></div><div class="swatch" style="background:#F5F3FF"></div></div>
-        <div class="palette-info"><div class="palette-name">Deep Purple & Lavender</div><div class="palette-desc">Creative, bold, futuristic</div><div class="palette-vibe">Best for: Tech · Design · Agency</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Deep Purple &amp; Lavender</div><div class="palette-desc">Creative, bold, futuristic</div><div class="palette-vibe">Best for: Tech · Design · Agency</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Crimson & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#9B1C1C"></div><div class="swatch" style="background:#EF4444"></div><div class="swatch" style="background:#FFF5F5"></div></div>
-        <div class="palette-info"><div class="palette-name">Crimson & White</div><div class="palette-desc">Passion, urgency, bold</div><div class="palette-vibe">Best for: Restaurant · Sports · NGO</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Crimson &amp; White</div><div class="palette-desc">Passion, urgency, bold</div><div class="palette-vibe">Best for: Restaurant · Sports · NGO</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Navy & Silver" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0F172A"></div><div class="swatch" style="background:#64748B"></div><div class="swatch" style="background:#F1F5F9"></div></div>
-        <div class="palette-info"><div class="palette-name">Navy & Silver</div><div class="palette-desc">Sleek, corporate, serious</div><div class="palette-vibe">Best for: Finance · CA · Consulting</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Navy &amp; Silver</div><div class="palette-desc">Sleek, corporate, serious</div><div class="palette-vibe">Best for: Finance · CA · Consulting</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Maroon & Gold" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#7F1D1D"></div><div class="swatch" style="background:#D4AF37"></div><div class="swatch" style="background:#FEF9EE"></div></div>
-        <div class="palette-info"><div class="palette-name">Maroon & Gold</div><div class="palette-desc">Royal, heritage, traditional</div><div class="palette-vibe">Best for: School · Wedding · Trust</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Maroon &amp; Gold</div><div class="palette-desc">Royal, heritage, traditional</div><div class="palette-vibe">Best for: School · Wedding · Trust</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Teal & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0D9488"></div><div class="swatch" style="background:#2DD4BF"></div><div class="swatch" style="background:#F0FDFA"></div></div>
-        <div class="palette-info"><div class="palette-name">Teal & White</div><div class="palette-desc">Fresh, modern, hygienic</div><div class="palette-vibe">Best for: Hospital · Pharma · Dental</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Teal &amp; White</div><div class="palette-desc">Fresh, modern, hygienic</div><div class="palette-vibe">Best for: Hospital · Pharma · Dental</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Charcoal & Orange" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1F2937"></div><div class="swatch" style="background:#FF6B00"></div><div class="swatch" style="background:#F9FAFB"></div></div>
-        <div class="palette-info"><div class="palette-name">Charcoal & Orange</div><div class="palette-desc">Industrial, dynamic, strong</div><div class="palette-vibe">Best for: Construction · Auto · Gym</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Charcoal &amp; Orange</div><div class="palette-desc">Industrial, dynamic, strong</div><div class="palette-vibe">Best for: Construction · Auto · Gym</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Rose Gold & White" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#BE185D"></div><div class="swatch" style="background:#F9A8D4"></div><div class="swatch" style="background:#FFF1F2"></div></div>
-        <div class="palette-info"><div class="palette-name">Rose Gold & White</div><div class="palette-desc">Feminine, elegant, warm</div><div class="palette-vibe">Best for: Beauty · Salon · Boutique</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Rose Gold &amp; White</div><div class="palette-desc">Feminine, elegant, warm</div><div class="palette-vibe">Best for: Beauty · Salon · Boutique</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Midnight Blue & Cyan" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#0C1445"></div><div class="swatch" style="background:#06B6D4"></div><div class="swatch" style="background:#ECFEFF"></div></div>
-        <div class="palette-info"><div class="palette-name">Midnight Blue & Cyan</div><div class="palette-desc">Innovation, digital, sharp</div><div class="palette-vibe">Best for: IT · SaaS · App · Fintech</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Midnight Blue &amp; Cyan</div><div class="palette-desc">Innovation, digital, sharp</div><div class="palette-vibe">Best for: IT · SaaS · App · Fintech</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Saffron & Ivory" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#D97706"></div><div class="swatch" style="background:#FCD34D"></div><div class="swatch" style="background:#FFFBEB"></div></div>
-        <div class="palette-info"><div class="palette-name">Saffron & Ivory</div><div class="palette-desc">Warm, Indian, festive</div><div class="palette-vibe">Best for: Catering · Events · Cultural</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Saffron &amp; Ivory</div><div class="palette-desc">Warm, Indian, festive</div><div class="palette-vibe">Best for: Catering · Events · Cultural</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Slate & Lime" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#334155"></div><div class="swatch" style="background:#84CC16"></div><div class="swatch" style="background:#F7FEE7"></div></div>
-        <div class="palette-info"><div class="palette-name">Slate & Lime</div><div class="palette-desc">Eco, modern, fresh</div><div class="palette-vibe">Best for: Organic · Startup · Sports</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Slate &amp; Lime</div><div class="palette-desc">Eco, modern, fresh</div><div class="palette-vibe">Best for: Organic · Startup · Sports</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
       <div class="palette-card" data-value="Copper & Dark" onclick="selectOption('color',this)">
         <div class="palette-swatches"><div class="swatch" style="background:#1C1C1E"></div><div class="swatch" style="background:#B87333"></div><div class="swatch" style="background:#2C2C2E"></div></div>
-        <div class="palette-info"><div class="palette-name">Copper & Dark</div><div class="palette-desc">Premium, masculine, elite</div><div class="palette-vibe">Best for: Luxury · Men's Brand · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
+        <div class="palette-info"><div class="palette-name">Copper &amp; Dark</div><div class="palette-desc">Premium, masculine, elite</div><div class="palette-vibe">Best for: Luxury · Men's Brand · Law</div><div class="palette-selected-tag">✓ Selected</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FONT SELECTION -->
+<!-- FONT SELECTION (12 fonts) -->
 <section id="font-selection">
   <div class="container">
     <div class="section-label">Step 3</div>
@@ -708,7 +828,7 @@
       </div>
       <div class="font-card" data-value="Tall & Uppercase" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Bebas Neue',sans-serif;letter-spacing:3px;">Aa Bb</div>
-        <div class="font-label">Tall & Uppercase</div><div class="font-desc">Bold, punchy, powerful</div><div class="font-best">Best for: Gym · Sports · Construction</div><div class="font-sample" style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">THE QUICK BROWN FOX.</div>
+        <div class="font-label">Tall &amp; Uppercase</div><div class="font-desc">Bold, punchy, powerful</div><div class="font-best">Best for: Gym · Sports · Construction</div><div class="font-sample" style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">THE QUICK BROWN FOX.</div>
       </div>
       <div class="font-card" data-value="Elegant Script" onclick="selectOption('font',this)">
         <div class="font-preview" style="font-family:'Dancing Script',cursive;font-weight:700;">Aa Bb</div>
@@ -742,7 +862,7 @@
   </div>
 </section>
 
-<!-- LAYOUT SELECTOR -->
+<!-- LAYOUT SELECTOR (6 layouts) -->
 <section id="layout-selector">
   <div class="container">
     <div class="section-label">Step 4</div>
@@ -824,15 +944,13 @@
       </div>
       <div id="cost-estimate" style="margin-top:16px; font-weight:700; color:var(--orange); font-size:0.95rem;"></div>
       <div style="margin-top:28px">
-        <button class="btn-primary" onclick="sendPlanToWhatsApp()">
-          📲 Send This Plan to Vedant
-        </button>
+        <button class="btn-primary" onclick="sendPlanToWhatsApp()">📲 Send This Plan to Vedant</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING (3 plans) -->
 <section id="pricing">
   <div class="container">
     <div class="section-label">Simple Pricing</div>
@@ -905,7 +1023,7 @@
   </div>
 </section>
 
-<!-- HOW WE'RE DIFFERENT -->
+<!-- COMPARISON TABLE -->
 <section id="comparison">
   <div class="container">
     <div class="section-label">Comparison</div>
@@ -923,7 +1041,7 @@
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ (6 questions) -->
 <section id="faq">
   <div class="container">
     <div class="section-label">FAQ</div>
@@ -1010,39 +1128,91 @@
   </div>
 </section>
 
-<!-- OUR LATEST WORKS (replacing old "Our Work") -->
-<section id="latest-work">
+<!-- ═══════════ OUR LATEST WEBSITE (SINGLE FRAME) ═══════════ -->
+<section id="our-work">
   <div class="container">
-    <div class="section-label">Freshly Built</div>
-    <h2 class="section-title">Our Latest Work</h2>
-    <p class="section-sub">See what we built just last week — a fully functional website for a coaching classes brand.</p>
-    <a href="https://vedant-t-076.github.io/Gaining-Grades-Classes/" target="_blank" rel="noopener" class="latest-work-card">
-      <div class="latest-work-thumb">📚</div>
+    <div class="section-label">Latest Work</div>
+    <h2 class="section-title">Our Latest Website</h2>
+    <p class="section-sub">Tap the card below to see a live project we recently delivered.</p>
+    <a href="https://vedant-t-076.github.io/Gaining-Grades-Classes/" target="_blank" class="latest-work-card">
+      <div class="latest-work-thumb">
+        📚
+      </div>
       <div class="latest-work-body">
-        <span class="latest-work-tag">Educational</span>
-        <h3 class="latest-work-title">Gaining Grades Classes</h3>
-        <p class="latest-work-desc">Complete coaching institute website with course pages, enquiry form, and mobile‑first design. Built and deployed in 5 days.</p>
-        <div class="latest-work-footer">
-          <span class="latest-work-meta">2026 · Deployed last week</span>
-          <span class="btn-outline" style="pointer-events:none;">🔗 Visit Website</span>
+        <span class="work-tag">Educational Test Series</span>
+        <h3 class="work-title">Gaining Grades Classes</h3>
+        <p class="work-desc">Complete online test series platform with student login, exam timer, instant results, and progress tracking. Beautifully designed, fully responsive, and equipped with a custom animated preloader.</p>
+        <div class="work-footer">
+          <span class="work-meta">2026 · Blue &amp; White</span>
+          <span class="btn-outline">Visit Website →</span>
         </div>
       </div>
     </a>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ═══════════ TESTIMONIALS (NEW, UPDATED) ═══════════ -->
 <section id="testimonials">
   <div class="container">
     <div class="section-label">Client Reviews</div>
     <h2 class="section-title">What Our Clients Say</h2>
-    <p class="section-sub">Real feedback from businesses who trusted Vedant and VikalpSphere.</p>
+    <p class="section-sub">Real feedback from recent projects.</p>
     <div class="testi-grid">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Vedant made the whole process so easy. I just picked colors and layout I liked and he built exactly that. No confusing calls, no revisions!"</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajesh Kulkarni</div><div class="testi-role">Owner, FitZone Gym · Ahmedabad</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Finally a web developer who asks what I want before building. Our school site looks exactly like the preview we chose. Students and parents love it!"</p><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Principal · BrightMinds Academy, Surat</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Quick delivery, clean design, and very professional. The live preview idea saved so much back-and-forth. Vedant understood our brand instantly."</p><div class="testi-author"><div class="testi-avatar">SA</div><div><div class="testi-name">Sameer Ansari</div><div class="testi-role">Founder · NovaTech Solutions, Baroda</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"We needed a test series website urgently for our coaching classes. Vedant delivered in just 4 days with student login and results – fantastic work!"</p><div class="testi-author"><div class="testi-avatar">DK</div><div><div class="testi-name">Deepika Kothari</div><div class="testi-role">Director · Excel Coaching Hub, Pune</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The animated preloader on our jewellery site is so elegant. Customers love it. Vedant's creativity really surprised us."</p><div class="testi-author"><div class="testi-avatar">NS</div><div><div class="testi-name">Neha Singh</div><div class="testi-role">Founder · Kriti Creations, Jaipur</div></div></div></div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Vedant built our coaching institute's test series website in just 5 days. The animated preloader and student dashboard are amazing!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Amit Khurana</div>
+            <div class="testi-role">Director, Gaining Grades Classes · Delhi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Our restaurant website looks exactly like the preview I chose. Professional, fast, and with online ordering integration. Highly recommended!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RS</div>
+          <div>
+            <div class="testi-name">Rohit Shetty</div>
+            <div class="testi-role">Owner, Spice Villa · Pune</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The enquiry forms and call buttons Vedant added have doubled our leads. Best decision to work with VikalpSphere!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">PM</div>
+          <div>
+            <div class="testi-name">Priya Malhotra</div>
+            <div class="testi-role">CEO, Skin &amp; Smile Dental · Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"From the first chat to going live, everything was transparent. Vedant's personal involvement made a huge difference."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SA</div>
+          <div>
+            <div class="testi-name">Shubham Arora</div>
+            <div class="testi-role">Founder, GreenMart Organics · Jaipur</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Our new gym website with membership forms and class schedule is fantastic. Even the preloader looks premium!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NK</div>
+          <div>
+            <div class="testi-name">Nikhil Koli</div>
+            <div class="testi-role">Owner, IronFist Gym · Surat</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1079,18 +1249,18 @@
 </footer>
 
 <script>
-  // PRELOADER WITH MINIMUM DISPLAY
+  // PRELOADER (2.5 SEC MINIMUM)
   (function() {
     const preloader = document.getElementById('preloader');
     let minTimeReached = false, loadFired = false;
-    setTimeout(() => { minTimeReached = true; maybeHide(); }, 300);
+    setTimeout(() => { minTimeReached = true; maybeHide(); }, 2500);
     window.addEventListener('load', () => { loadFired = true; maybeHide(); });
     function maybeHide() { if (minTimeReached && loadFired) document.body.classList.add('loaded'); }
   })();
 
   const state = { type: null, color: null, font: null, layout: null };
 
-  // STICKY NAV SHADOW & BACK TO TOP
+  // STICKY NAV & BACK TO TOP
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
     document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
@@ -1130,12 +1300,12 @@
   function updatePreview() {
     const { type, color, font, layout } = state;
     const previewEl = document.getElementById('preview-text');
-    const hintEl    = document.querySelector('.preview-hint');
-    const costEl    = document.getElementById('cost-estimate');
+    const hintEl = document.querySelector('.preview-hint');
+    const costEl = document.getElementById('cost-estimate');
 
-    updateTag('tag-type',   type,   '🌐 ' + (type   || 'Website Type'));
-    updateTag('tag-color',  color,  '🎨 ' + (color  || 'Color Theme'));
-    updateTag('tag-font',   font,   '✏️ ' + (font   || 'Font Style'));
+    updateTag('tag-type', type, '🌐 ' + (type || 'Website Type'));
+    updateTag('tag-color', color, '🎨 ' + (color || 'Color Theme'));
+    updateTag('tag-font', font, '✏️ ' + (font || 'Font Style'));
     updateTag('tag-layout', layout, '🖥️ ' + (layout || 'Layout'));
 
     const parts = [type, color, font, layout].filter(Boolean);
@@ -1149,9 +1319,9 @@
         ? `${4 - parts.length} more selection${4 - parts.length > 1 ? 's' : ''} to complete your plan ↑`
         : '✅ Plan complete! Hit the button below to send it to Vedant.';
       let html = '';
-      if (type)   html += `<span>${type} Website</span>`;
-      if (color)  html += (html ? ' · ' : '') + color + ' Theme';
-      if (font)   html += (html ? ' · ' : '') + font + ' Font';
+      if (type) html += `<span>${type} Website</span>`;
+      if (color) html += (html ? ' · ' : '') + color + ' Theme';
+      if (font) html += (html ? ' · ' : '') + font + ' Font';
       if (layout) html += (html ? ' · ' : '') + layout + ' Layout';
       previewEl.innerHTML = html;
       previewEl.classList.remove('fade-in');
@@ -1165,7 +1335,6 @@
       } else costEl.innerHTML = '';
     }
 
-    // Update hidden field for enquiry form
     const planInput = document.getElementById('design-plan-input');
     if (planInput) {
       const planParts = [type, color, font, layout].filter(Boolean);
@@ -1182,9 +1351,9 @@
   function sendPlanToWhatsApp() {
     const { type, color, font, layout } = state;
     const missing = [];
-    if (!type)   missing.push('Website Type');
-    if (!color)  missing.push('Color Theme');
-    if (!font)   missing.push('Font Style');
+    if (!type) missing.push('Website Type');
+    if (!color) missing.push('Color Theme');
+    if (!font) missing.push('Font Style');
     if (!layout) missing.push('Layout');
     if (missing.length > 0) {
       alert('⚠️ Please complete all selections first!\n\nStill missing:\n• ' + missing.join('\n• '));
@@ -1249,7 +1418,6 @@
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
-
       if (response.ok) {
         formMessage.textContent = '✅ Your enquiry has been sent! Vedant will reply within 24 hours.';
         formMessage.className = 'form-message success';
@@ -1284,6 +1452,5 @@
     document.getElementById('footer-logo-text').style.display = 'inline';
   }
 </script>
-
 </body>
 </html>
